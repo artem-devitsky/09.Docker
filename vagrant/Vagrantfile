@@ -11,16 +11,17 @@ config.vm.define "VM-CentosDocker" do |centos|
     end
     centos.vm.provision "shell", inline: <<-SHELL
       sudo -i
-      yum update -y
-      yum clean all
+#      yum update -y
+#      yum clean all
       firewall-cmd --permanent --add-service=http
       firewall-cmd --reload
-      yum install -y yum-utils git
       usermod -aG docker $USER
+      echo $(telnet 127.0.0.1 80)
     SHELL
   end
+config.vm.synced_folder "./app_files", "/app_files",owner: "vagrant", group: "vagrant"
 config.vm.provision :docker
 config.vm.provision :docker_compose
-config.vm.provision "file", source: "./app_files", destination: "~/app_files"
+config.vm.provision :docker_compose, yml: "/app_files/docker-compose.yml", rebuild: true, run: "always"
 
 end
