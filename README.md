@@ -1,8 +1,11 @@
 ##### 09.Docker
+
 [Docker image](https://github.com/users/artem-devitsky/packages/container/package/docker_build)
+
 [Github Repo](https://github.com/artem-devitsky/09.Docker)
 
-##docker-compose.yml
+#docker-compose.yml
+
 ```yaml
 version: "3.3"
 services:
@@ -13,7 +16,8 @@ services:
                       - "80:80"
 ```
 
-##Dockerfile
+#Dockerfile
+
 ```bash
 FROM python:alpine
 MAINTAINER Artsiom Dziavitski 
@@ -22,7 +26,8 @@ ENTRYPOINT ["python3","-u", "test_app.py"]
 LABEL org.opencontainers.image.source https://github.com/artem-devitsky/09.Docker
 ```
 
-##GHCR Workflow
+#GHCR Workflow
+
 ```yaml
 name: Docker image publishing
 
@@ -58,7 +63,9 @@ jobs:
          tags: ghcr.io/artem-devitsky/docker_build:latest
 
 ```
-###Testing
+
+#Testing
+
 ```bash
 vagrant> vagrant up
 Bringing machine 'VM-CentosDocker' up with 'virtualbox' provider...
